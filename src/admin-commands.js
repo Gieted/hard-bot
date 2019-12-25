@@ -50,7 +50,7 @@ async function fetchAllMessages (channel) {
   while (true) {
     const messages = await channel.fetchMessages({ limit: 100, before: lastMessageId })
     allMessages = allMessages.concat(messages.array())
-    if (messages.count !== 0) break
+    if (messages.size === 0) break
     lastMessageId = messages.last().id
   }
 
