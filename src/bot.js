@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime'
 import { Client, DMChannel, TextChannel } from 'discord.js'
 import * as config from './config'
 import * as channels from './channels'
@@ -6,7 +7,6 @@ import * as emojis from './emojis'
 import * as members from './members'
 import { handleAdminMessage } from './admin-commands'
 import * as R from 'ramda'
-import 'regenerator-runtime/runtime'
 
 const client = new Client()
 
@@ -46,14 +46,8 @@ const handleMessage = R.curry((guild, message) => {
   }
 })
 
-async function addVideoControls (message) {
-  const videoButtons = [
-    emojis.like,
-    emojis.disLike,
-    emojis.arrowDown
-  ]
-
-  for (const button of videoButtons) {
+export async function addVideoControls (message) {
+  for (const button of emojis.videoButtons) {
     await message.react(button)
   }
 }

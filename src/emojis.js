@@ -1,3 +1,10 @@
-export const like = '👍'
-export const disLike = '👎'
-export const arrowDown = '⬇'
+const like = '👍'
+const disLike = '👎'
+const arrowDown = '⬇'
+const noEntry = '🚫'
+export const videoButtons = [
+  like,
+  disLike,
+  arrowDown,
+  noEntry
+]
