@@ -59,7 +59,12 @@ async function fetchAllMessages (channel) {
 
 async function repairControls (guild) {
   const hardChannel = channels.hard(guild)
-  const messages = await fetchAllMessages(hardChannel)
+  let messages = await fetchAllMessages(hardChannel)
+
+  messages = messages.filter(message => !(message.reactions.size === emojis.videoButtons.length &&
+                                          message.reactions.every(reaction => emojis.videoButtons.includes(reaction.emoji.toString()) &&
+                                          message.reactions.array().indexOf(reaction) ===
+                                          emojis.videoButtons.indexOf(reaction.emoji.toString()))))
 
   const promises = []
   for (const message of messages) {
