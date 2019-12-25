@@ -4,6 +4,8 @@ import * as emojis from './emojis'
 import { addVideoControls } from './bot'
 
 export function handleAdminMessage (guild, message) {
+  if (message.author.bot) return
+
   const match = /(\S*)\s?(.*)/.exec(message)
   const [, command, body] = match
   const user = message.author

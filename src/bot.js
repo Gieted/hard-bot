@@ -18,7 +18,7 @@ async function start () {
   client.on('message', handleMessage(hardParty))
   channels.warning(hardParty).fetchMessages()
 
-  members.admin(hardParty).dmChannel.send('Uruchomiono bota')
+  members.admin(hardParty).send('Uruchomiono bota')
 }
 
 const handleReactionAdd = R.curry((guild, messageReaction, user) => {
