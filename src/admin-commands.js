@@ -2,6 +2,7 @@ import * as channels from './channels'
 import * as roles from './roles'
 import * as emojis from './emojis'
 import { addVideoControls } from './bot'
+import * as members from './members'
 
 export function handleAdminMessage (guild, message) {
   if (message.author.bot) return
@@ -58,14 +59,20 @@ async function fetchAllMessages (channel) {
 
 async function repairControls (guild) {
   const hardChannel = channels.hard(guild)
-  const messages = await fetchAllMessages(hardChannel)
+  let messages = await fetchAllMessages(hardChannel)
 
-  messages
-    .filter(message => !(message.reactions.size === emojis.videoButtons.length &&
-                         message.reactions.every(reaction => emojis.videoButtons.includes(reaction.emoji.toString()))))
+  messages = messages.filter(message => !(message.reactions.size === emojis.videoButtons.length &&
+                                          message.reactions.every(reaction => emojis.videoButtons.includes(reaction.emoji.toString()) &&
+                                          message.reactions.array().indexOf(reaction) ===
+                                          emojis.videoButtons.indexOf(reaction.emoji.toString()))))
 
-    .forEach(async message => {
-      await message.clearReactions()
-      addVideoControls(message)
+  const promises = []
+  for (const message of messages) {
+    message.clearReactions().then(async () => {
+      promises.push(addVideoControls(message))
     })
+  }
+
+  await Promise.all(promises)
+  members.admin(guild).send('Zakończono naprawianie przycisków')
 }
