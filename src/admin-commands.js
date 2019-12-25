@@ -17,6 +17,9 @@ export function handleAdminMessage (guild, message) {
     case 'repair-controls':
       repairControls(guild)
       break
+    default:
+      message.channel.send('Nierozpoznano komendy')
+      break
   }
 }
 
