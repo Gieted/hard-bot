@@ -46,7 +46,7 @@ function switchAdmin (guild, user) {
   }
 }
 
-async function fetchAllMessages (channel) {
+export async function fetchAllMessages (channel) {
   let allMessages = []
   let lastMessageId = null
   while (true) {
@@ -79,7 +79,7 @@ async function repairControls (guild) {
   members.admin(guild).send('Zakończono naprawianie przycisków')
 }
 
-function repairZones (guild) {
+export function repairZones (guild) {
   for (const member of guild.members.array()) {
     if (member.user.bot) continue
     if (!guild.channels.some(channel => channel.permissionOverwrites.some(permissions => permissions.id ===
