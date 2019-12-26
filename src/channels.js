@@ -1,11 +1,5 @@
-export function warning (guild) {
-  return guild.channels.find(channel => channel.name === 'ostrzeżenie')
-}
+export const warning = guild => guild.channels.find(channel => channel.name === 'ostrzeżenie')
 
-export function hard (guild) {
-  return guild.channels.find(channel => channel.name === 'hard')
-}
+export const hard = guild => guild.channels.find(channel => channel.name === 'hard')
 
-export function general (guild) {
-  return guild.channels.find(channel => channel.name === 'ogólny')
-}
+export const general = guild => guild.channels.find(channel => channel.name === 'ogólny')
