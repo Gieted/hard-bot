@@ -37,7 +37,9 @@ const handleMessage = R.curry((guild, message) => {
 
   if (message.channel instanceof TextChannel) {
     if (channel === channels.hard(message.guild)) {
-      addVideoControls(message)
+      if (validateVideo(message)) {
+        addVideoControls(message)
+      }
     }
   }
 
@@ -52,6 +54,25 @@ export async function addVideoControls (message) {
   for (const button of emojis.videoButtons) {
     await message.react(button)
   }
+}
+
+function validateVideo (message) {
+  if (message.content !== '') {
+    message.delete()
+    return false
+  }
+
+  if (message.attachments.size !== 1) {
+    message.delete()
+    return false
+  }
+
+  if (!message.attachments.first().filename.endsWith('.mp4')) {
+    message.delete()
+    return false
+  }
+
+  return true
 }
 
 start()
