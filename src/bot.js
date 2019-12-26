@@ -9,6 +9,7 @@ import { fetchAllMessages, handleAdminMessage, repairZones } from './admin-comma
 import * as R from 'ramda'
 import admin from 'firebase-admin'
 import continueWatchingMessage from './continue-watching-message'
+import { createMyZone } from './my-zone'
 
 admin.initializeApp({
   credential: admin.credential.cert(JSON.parse(Buffer.from(process.env.FIREBASE_SERVICE_ACCOUNT, 'base64').toString())),
@@ -28,10 +29,20 @@ async function start () {
   client.on('messageReactionAdd', handleReactionAdd(hardParty, videos))
   client.on('messageReactionRemove', handleReactionRemove(hardParty, videos))
   client.on('message', handleMessage(hardParty, videos))
+  client.on('guildMemberAdd', handleGuildMemberAdd)
   channels.warning(hardParty).fetchMessages()
 
   members.admin(hardParty).send('Uruchomiono bota')
   repairZones(hardParty)
+}
+
+const handleGuildMemberAdd = (member) => {
+  const guild = member.guild
+
+  if (!guild.channels.some(channel => channel.permissionOverwrites.some(permissions => permissions.id ===
+                                                                                       member.user.id))) {
+    createMyZone(member)
+  }
 }
 
 async function changeNextVideo (userId, guild, nextVideoUrl) {
