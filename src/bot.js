@@ -49,7 +49,7 @@ const handleMessage = R.curry((guild, message) => {
     if (message.author === members.admin(guild).user) {
       handleAdminMessage(guild, message)
     } else {
-      message.channel.send('Hej jeśli próbujesz skontaktować się z administracją, to w ten sposób ci się nie uda.' +
+      message.channel.send('Hej, jeśli próbujesz skontaktować się z administracją, to w ten sposób ci się nie uda.' +
                            ' Pisz po prostu na #ogólny.')
     }
   }
