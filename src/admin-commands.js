@@ -5,8 +5,6 @@ import { addVideoControls } from './bot'
 import * as members from './members'
 
 export function handleAdminMessage (guild, message) {
-  if (message.author.bot) return
-
   const match = /(\S*)\s?(.*)/.exec(message)
   const [, command, body] = match
   const user = message.author
