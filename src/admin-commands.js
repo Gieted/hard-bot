@@ -3,6 +3,7 @@ import * as roles from './roles'
 import * as emojis from './emojis'
 import { addVideoControls } from './bot'
 import * as members from './members'
+import { createMyZone } from './my-zone'
 
 export function handleAdminMessage (guild, message) {
   const match = /(\S*)\s?(.*)/.exec(message)
@@ -17,6 +18,9 @@ export function handleAdminMessage (guild, message) {
       break
     case 'repair-controls':
       repairControls(guild)
+      break
+    case 'repair-zones':
+      repairZones(guild)
       break
     default:
       message.channel.send('Nierozpoznano komendy')
@@ -73,4 +77,14 @@ async function repairControls (guild) {
 
   await Promise.all(promises)
   members.admin(guild).send('Zakończono naprawianie przycisków')
+}
+
+function repairZones (guild) {
+  for (const member of guild.members.array()) {
+    if (member.user.bot) continue
+    if (!guild.channels.some(channel => channel.permissionOverwrites.some(permissions => permissions.id ===
+                                                                                         member.user.id))) {
+      createMyZone(member)
+    }
+  }
 }
