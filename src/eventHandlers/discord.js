@@ -4,7 +4,7 @@ import * as members from '../resources/members'
 
 import { handleAdminMessage } from '../adminCommands'
 import { handleWarningAccept } from './other'
-import { validateVideo } from '../util/videoUtil'
+import { isValid } from '../util/videoUtil'
 
 import { DMChannel, TextChannel } from 'discord.js'
 
@@ -31,7 +31,9 @@ export const handleMessage = message => {
 
   if (message.channel instanceof TextChannel) {
     if (channel === channels.hard()) {
-      validateVideo(message)
+      if (!isValid(message)) {
+        message.delete()
+      }
     }
   }
 

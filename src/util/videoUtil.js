@@ -3,28 +3,12 @@ import * as channels from '../resources/channels'
 import { fetchAllMessages } from './messageUtil'
 
 /**
- * Sprawdza czy film spełnia zasady kanału hard, jeśli nie, usuwa go.
+ * Sprawdza czy film spełnia zasady kanału hard.
  * @param video - Film do sprawdzenia.
- * @return {boolean} - Fałsz jeśli film został usunięty, w przeciwnym wypadku prawda.
+ * @return {boolean} - Prawda jeśli film jest zgodny z zasadami, w przeciwnym wypadku fałsz.
  */
-export const validateVideo = video => {
-  if (video.content !== '') {
-    video.delete()
-    return false
-  }
-
-  if (video.attachments.size !== 1) {
-    video.delete()
-    return false
-  }
-
-  if (!video.attachments.first().filename.endsWith('.mp4')) {
-    video.delete()
-    return false
-  }
-
-  return true
-}
+export const isValid = video => video.content === '' && video.attachments.size === 1 &&
+                                video.attachments.first().filename.endsWith('.mp4')
 
 /**
  * Pobiera listę wszystkich filmów.
