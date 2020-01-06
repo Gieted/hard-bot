@@ -1,7 +1,6 @@
 import * as channels from '../resources/channels'
 
 import { fetchAllMessages } from './messageUtil'
-import videoControls from '../resources/videoControls'
 
 /**
  * Sprawdza czy film spełnia zasady kanału hard, jeśli nie, usuwa go.
@@ -25,17 +24,6 @@ export const validateVideo = video => {
   }
 
   return true
-}
-
-/**
- * Dodaje przyciski do filmu.
- * @param video - Film, do którego należy dodać przyciski.
- * @return {Promise<void>} - Obietnica, rozwiązana w chwili dodania wszystkich przycisków.
- */
-export const addControls = async video => {
-  for (const button of videoControls) {
-    await video.react(button)
-  }
 }
 
 /**
