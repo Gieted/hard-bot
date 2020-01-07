@@ -14,5 +14,5 @@ export const isValid = video => video.content === '' && video.attachments.size =
  * Pobiera listę wszystkich filmów.
  */
 export const fetchAllVideos = () => {
-  fetchAllMessages(channels.hard())
+  fetchAllMessages(channels.videos())
 }
