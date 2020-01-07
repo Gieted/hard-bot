@@ -25,14 +25,14 @@ export const handleAdminMessage = message => {
 
 /**
  * Wysyła wiadomość na kanale "ogólny", jako bot.
- * @param body - Treść wiadomości.
+ * @param content - Treść wiadomości.
  */
-const sendToGeneral = body => {
-  if (body === '') {
+const sendToGeneral = content => {
+  if (content === '') {
     return
   }
 
-  channels.general().send(body)
+  channels.general().send(content)
 }
 
 /**
