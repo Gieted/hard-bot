@@ -5,5 +5,5 @@ import * as roles from '../resources/roles'
  * @param member - Członek, który zaakceptował ostrzeżenie.
  */
 export const handleWarningAccept = (member) => {
-  member.addRole(roles.hard())
+  member.addRole(roles.access())
 }

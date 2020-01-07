@@ -11,10 +11,10 @@ export const warning = () => hardParty().channels.find(channel => channel.name =
 
 // noinspection JSValidateTypes
 /**
- * Kanał "hard".
+ * Kanał "filmy".
  * @return {TextChannel}
  */
-export const hard = () => hardParty().channels.find(channel => channel.name === 'hard')
+export const videos = () => hardParty().channels.find(channel => channel.name === 'filmy')
 
 // noinspection JSValidateTypes
 /**

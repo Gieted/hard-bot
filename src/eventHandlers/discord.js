@@ -30,7 +30,7 @@ export const handleMessage = message => {
   const channel = message.channel
 
   if (message.channel instanceof TextChannel) {
-    if (channel === channels.hard()) {
+    if (channel === channels.videos()) {
       if (!isValid(message)) {
         message.delete()
       }
