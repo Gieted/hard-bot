@@ -1,6 +1,8 @@
 import * as channels from '../resources/channels'
 
 import { fetchAllMessages } from './messageUtil'
+// eslint-disable-next-line no-unused-vars
+import { Message } from 'discord.js'
 
 /**
  * Sprawdza czy film spełnia zasady kanału hard.
@@ -12,7 +14,8 @@ export const isValid = video => video.content === '' && video.attachments.size =
 
 /**
  * Pobiera listę wszystkich filmów.
+ * @return {Promise<Message[]>}
  */
 export const fetchAllVideos = () => {
-  fetchAllMessages(channels.videos())
+  return fetchAllMessages(channels.videos())
 }

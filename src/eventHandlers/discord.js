@@ -7,6 +7,7 @@ import { handleWarningAccept } from './other'
 import { isValid } from '../util/videoUtil'
 
 import { DMChannel, TextChannel } from 'discord.js'
+import { updateMemberCount, updateVideoCount } from '../statistics/updaters'
 
 /**
  * Wywoływana przy dodaniu reakcji do wiadomości.
@@ -33,6 +34,8 @@ export const handleMessage = message => {
     if (channel === channels.videos()) {
       if (!isValid(message)) {
         message.delete()
+      } else {
+        updateVideoCount()
       }
     }
   }
@@ -44,5 +47,29 @@ export const handleMessage = message => {
       message.channel.send('Hej, jeśli próbujesz skontaktować się z administracją, to w ten sposób ci się nie uda.' +
                            ' Pisz po prostu na #ogólny.')
     }
+  }
+}
+
+/**
+ * Wywoływana przy usunięciu wiadomości.
+ * @param message - Usunięta wiadomość.
+ */
+export const handleMessageDelete = message => {
+  const channel = message.channel
+
+  if (channel instanceof TextChannel) {
+    if (channel === channels.videos()) {
+      updateVideoCount()
+    }
+  }
+}
+
+/**
+ * Wywolywana przy dodaniu nowego członka.
+ * @param member - Dodany członek.
+ */
+export const handleGuildMemberAddOrRemove = member => {
+  if (member.guild === hardParty()) {
+    updateMemberCount()
   }
 }
