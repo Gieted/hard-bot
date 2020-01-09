@@ -10,7 +10,7 @@ import { Message } from 'discord.js'
  * @return {boolean} - Prawda jeśli film jest zgodny z zasadami, w przeciwnym wypadku fałsz.
  */
 export const isValid = video => video.content === '' && video.attachments.size === 1 &&
-                                video.attachments.first().filename.endsWith('.mp4')
+                                video.attachments.first().name.endsWith('.mp4')
 
 /**
  * Pobiera listę wszystkich filmów.
