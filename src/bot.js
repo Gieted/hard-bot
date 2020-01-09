@@ -11,9 +11,15 @@ import { updateStatistics } from './statistics/updaters'
  * Główna funckja rozruchowa bota.
  * @return {Promise<void>}
  */
-const start = async () => {
-  await client.login(config.token)
+const start = () => {
   registerListeners()
+  client.login(config.token)
+}
+
+/**
+ * Inicjuje bota. Wywoływana po uruchomieniu bota.
+ */
+const init = () => {
   fetchWarningMessage()
   fetchAllVideos().then(updateStatistics)
 
@@ -24,6 +30,7 @@ const start = async () => {
  * Rejestruje listenery dla eventów discord.js.
  */
 const registerListeners = () => {
+  client.on('ready', init)
   client.on('message', handleMessage)
   client.on('messageReactionAdd', handleReactionAdd)
   client.on('messageDelete', handleMessageDelete)
