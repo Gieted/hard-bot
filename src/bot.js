@@ -3,8 +3,9 @@ import 'regenerator-runtime/runtime'
 import client from './resources/client'
 import * as config from './resources/config'
 
-import { handleMessage, handleReactionAdd } from './eventHandlers'
+import { handleGuildMemberAddOrRemove, handleMessage, handleMessageDelete, handleReactionAdd } from './eventHandlers'
 import { fetchAllVideos, fetchWarningMessage, sendWelcomeMessage } from './util'
+import { updateStatistics } from './statistics/updaters'
 
 /**
  * Główna funckja rozruchowa bota.
@@ -14,7 +15,7 @@ const start = async () => {
   await client.login(config.token)
   registerListeners()
   fetchWarningMessage()
-  fetchAllVideos()
+  fetchAllVideos().then(updateStatistics)
 
   sendWelcomeMessage()
 }
@@ -25,6 +26,9 @@ const start = async () => {
 const registerListeners = () => {
   client.on('message', handleMessage)
   client.on('messageReactionAdd', handleReactionAdd)
+  client.on('messageDelete', handleMessageDelete)
+  client.on('guildMemberAdd', handleGuildMemberAddOrRemove)
+  client.on('guildMemberRemove', handleGuildMemberAddOrRemove)
 }
 
 start()
