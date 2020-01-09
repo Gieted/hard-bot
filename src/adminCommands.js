@@ -42,8 +42,8 @@ const switchAdmin = () => {
   const member = members.admin()
   const adminRole = roles.admin()
   if (member.roles.some(role => role === adminRole)) {
-    member.removeRole(adminRole)
+    member.roles.remove(adminRole)
   } else {
-    member.addRole(adminRole)
+    member.roles.add(adminRole)
   }
 }
