@@ -65,10 +65,10 @@ export const handleMessageDelete = message => {
 }
 
 /**
- * Wywolywana przy dodaniu nowego członka.
- * @param member - Dodany członek.
+ * Wywolywana przy usunięciu członka.
+ * @param member - Usunięty członek.
  */
-export const handleGuildMemberAddOrRemove = member => {
+export const handleGuildMemberRemove = member => {
   if (member.guild === hardParty()) {
     updateMemberCount()
   }
