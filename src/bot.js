@@ -3,7 +3,7 @@ import 'regenerator-runtime/runtime'
 import client from './resources/client'
 import * as config from './resources/config'
 
-import { handleGuildMemberAddOrRemove, handleMessage, handleMessageDelete, handleReactionAdd } from './eventHandlers'
+import { handleGuildMemberRemove, handleMessage, handleMessageDelete, handleReactionAdd } from './eventHandlers'
 import { fetchAllVideos, fetchWarningMessage, sendWelcomeMessage } from './util'
 import { updateStatistics } from './statistics/updaters'
 
@@ -34,8 +34,7 @@ const registerListeners = () => {
   client.on('message', handleMessage)
   client.on('messageReactionAdd', handleReactionAdd)
   client.on('messageDelete', handleMessageDelete)
-  client.on('guildMemberAdd', handleGuildMemberAddOrRemove)
-  client.on('guildMemberRemove', handleGuildMemberAddOrRemove)
+  client.on('guildMemberRemove', handleGuildMemberRemove)
 }
 
 start()
