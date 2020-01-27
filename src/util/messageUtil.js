@@ -2,13 +2,6 @@
 import { Message } from 'discord.js'
 
 /**
- * Pobiera pierwszą wiadomość z danego kanału.
- * @param channel - Kanał, z którego należy pobrać wiadomość.
- * @return {Promise<Message>} - Obietnica wiadomości.
- */
-export const fetchFirstMessage = async channel => (await channel.messages.fetch({ limit: 1 })).first()
-
-/**
  * Pobiera wszystkie wiadomości z danego kanału.
  * @param channel - Kanał, z którego należy pobrać wiadomości.
  * @return {Promise<Message[]>} - Obietnica listy wszystkich wiadomości.
