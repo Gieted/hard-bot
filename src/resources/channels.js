@@ -7,18 +7,18 @@ import { TextChannel } from 'discord.js'
  * Kanał "ostrzeżenie".
  * @return {TextChannel}
  */
-export const warning = () => hardParty().channels.find(channel => channel.name === 'ostrzeżenie')
+export const warning = () => hardParty().channels.cache.find(channel => channel.name === 'ostrzeżenie')
 
 // noinspection JSValidateTypes
 /**
  * Kanał "filmy".
  * @return {TextChannel}
  */
-export const videos = () => hardParty().channels.find(channel => channel.name === 'filmy')
+export const videos = () => hardParty().channels.cache.find(channel => channel.name === 'filmy')
 
 // noinspection JSValidateTypes
 /**
  * Kanał "ogólny".
  * @return {TextChannel}
  */
-export const general = () => hardParty().channels.find(channel => channel.name === 'ogólny')
+export const general = () => hardParty().channels.cache.find(channel => channel.name === 'ogólny')

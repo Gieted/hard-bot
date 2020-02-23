@@ -8,4 +8,4 @@ import { GuildMember } from 'discord.js'
  * Administrator serwera.
  * @return {GuildMember}
  */
-export const admin = () => hardParty().members.find(member => member.user.id === config.adminId)
+export const admin = () => hardParty().members.cache.find(member => member.user.id === config.adminId)

@@ -7,8 +7,7 @@ import * as roles from '../resources/roles'
  * @return {number}
  */
 export const memberCount = () => hardParty()
-  .members
-  .filter(member => member.roles.some(role => role === roles.access())).size
+  .members.cache.filter(member => member.roles.cache.some(role => role === roles.access())).size
 
 /**
  * Ilość filmików.
