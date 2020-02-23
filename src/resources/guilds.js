@@ -7,4 +7,4 @@ import { Guild } from 'discord.js'
  * Gildia "Hard Party".
  * @return {Guild}
  */
-export const hardParty = () => client.guilds.find(guild => guild.id === config.guildId)
+export const hardParty = () => client.guilds.cache.find(guild => guild.id === config.guildId)

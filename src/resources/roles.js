@@ -7,11 +7,11 @@ import { Role } from 'discord.js'
  * Rola "dostęp".
  * @return {Role}
  */
-export const access = () => hardParty().roles.find(role => role.name === 'dostęp')
+export const access = () => hardParty().roles.cache.find(role => role.name === 'dostęp')
 
 // noinspection JSValidateTypes
 /**
  * Rola "admin".
  * @return {Role}
  */
-export const admin = () => hardParty().roles.find(role => role.name === 'admin')
+export const admin = () => hardParty().roles.cache.find(role => role.name === 'admin')

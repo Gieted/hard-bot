@@ -41,7 +41,7 @@ const sendToGeneral = content => {
 const switchAdmin = () => {
   const member = members.admin()
   const adminRole = roles.admin()
-  if (member.roles.some(role => role === adminRole)) {
+  if (member.roles.cache.some(role => role === adminRole)) {
     member.roles.remove(adminRole)
   } else {
     member.roles.add(adminRole)

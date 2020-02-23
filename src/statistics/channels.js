@@ -7,11 +7,11 @@ import { VoiceChannel } from 'discord.js'
  * Kanał wyświetlający liczbę członków.
  * @return {VoiceChannel}
  */
-export const memberCount = () => hardParty().channels.find(channel => channel.name.includes('członków'))
+export const memberCount = () => hardParty().channels.cache.find(channel => channel.name.includes('członków'))
 
 // noinspection JSValidateTypes
 /**
  * Kanał wyświetlający liczbę filmów.
  * @return {VoiceChannel}
  */
-export const videoCount = () => hardParty().channels.find(channel => channel.name.includes('filmów'))
+export const videoCount = () => hardParty().channels.cache.find(channel => channel.name.includes('filmów'))
