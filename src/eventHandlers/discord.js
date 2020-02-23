@@ -26,7 +26,12 @@ export const handleReactionAdd = (messageReaction, user) => {
  * @param message - Otrzymana wiadomość.
  */
 export const handleMessage = message => {
-  if (message.author.bot) return
+  if (message.author.bot) {
+    if (message.content === 'done') {
+      updateVideoCount()
+    }
+    return
+  }
 
   const channel = message.channel
 
@@ -45,7 +50,7 @@ export const handleMessage = message => {
       handleAdminMessage(message)
     } else {
       message.channel.send('Hej, jeśli próbujesz skontaktować się z administracją, to w ten sposób ci się nie uda.' +
-                           ' Pisz po prostu na #ogólny.')
+        ' Pisz po prostu na #ogólny.')
     }
   }
 }
