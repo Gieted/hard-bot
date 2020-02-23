@@ -28,7 +28,7 @@ export const handleReactionAdd = (messageReaction, user) => {
 export const handleMessage = message => {
   if (message.author.bot) {
     if (message.content === 'done') {
-      updateVideoCount()
+      message.delete().then(updateVideoCount)
     }
     return
   }
