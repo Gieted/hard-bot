@@ -15,9 +15,3 @@ export const guildId = process.env.GUILD_ID
  * @type {string}
  */
 export const adminId = process.env.ADMIN_ID
-
-/**
- * Dane logowania do firebase (odkodowane z Base64 i wczytane z JSON).
- * @type {admin.ServiceAccount}
- */
-export const firebaseServiceAccount = JSON.parse(Buffer.from(process.env.FIREBASE_SERVICE_ACCOUNT, 'base64').toString())
