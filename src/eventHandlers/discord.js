@@ -3,11 +3,12 @@ import { hardParty } from '../resources/guilds'
 import * as members from '../resources/members'
 
 import { handleAdminMessage } from '../adminCommands'
-import { handleWarningAccept } from './other'
+import { handleAccessGrant, handleAccessRemove, handleWarningAccept } from './other'
 import { isValid } from '../util/videoUtil'
 
 import { DMChannel, TextChannel } from 'discord.js'
 import { updateMemberCount, updateVideoCount } from '../statistics/updaters'
+import hasAccess from '../util/hasAccess'
 
 /**
  * Wywoływana przy dodaniu reakcji do wiadomości.
@@ -76,5 +77,18 @@ export const handleMessageDelete = message => {
 export const handleGuildMemberRemove = member => {
   if (member.guild === hardParty()) {
     updateMemberCount()
+  }
+}
+
+/**
+ * Wywoływana przy zaktualizowaniu członka.
+ * @param oldMember - Członek przed aktualizacją.
+ * @param newMember - Członek po aktualizacji.
+ */
+export const handleGuildMemberUpdate = (oldMember, newMember) => {
+  if (!hasAccess(oldMember) && hasAccess(newMember)) {
+    handleAccessGrant()
+  } else if (hasAccess(oldMember) && !hasAccess(newMember)) {
+    handleAccessRemove()
   }
 }
