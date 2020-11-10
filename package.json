@@ -13,14 +13,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.7.7",
+    "@babel/cli": "^7.12.1",
     "@babel/core": "^7.7.5",
     "@babel/node": "^7.7.4",
     "@babel/preset-env": "^7.7.6",
     "standard": "^14.3.1"
   },
   "dependencies": {
-    "discord.js": "discordjs/discord.js#ecd8cccddf9b83f4f7cd858fdcad9e436ac51794",
+    "discord.js": "discordjs/discord.js#7ec0bd93b0d7788e8ccf5576add37f7198be3f72",
     "firebase-admin": "^8.9.0",
     "ramda": "^0.26.1",
     "regenerator-runtime": "^0.13.3"
