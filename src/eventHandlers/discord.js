@@ -4,7 +4,7 @@ import * as members from '../resources/members'
 
 import { handleAdminMessage } from '../adminCommands'
 import { handleAccessGrant, handleAccessRemove, handleWarningAccept } from './other'
-import { isValid } from '../util/videoUtil'
+import { isValid } from '../util'
 
 import { DMChannel, TextChannel } from 'discord.js'
 import { updateMemberCount, updateVideoCount } from '../statistics/updaters'
